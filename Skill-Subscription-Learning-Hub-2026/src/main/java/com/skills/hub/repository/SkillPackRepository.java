@@ -1,5 +1,5 @@
 package com.skills.hub.repository;
-
+import java.util.List;
 import com.skills.hub.model.SkillPack;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -21,5 +21,5 @@ for SkillPack (courses).
 */
 
 public interface SkillPackRepository extends JpaRepository<SkillPack, Long> {
-    // No custom methods needed initially
+    List<SkillPack> findByTitleContainingIgnoreCase(String keyword);// No custom methods needed initially
 }
