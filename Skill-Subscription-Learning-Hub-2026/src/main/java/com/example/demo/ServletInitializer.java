@@ -1,13 +1,19 @@
-package com.example.demo;
+package com.skills.hub;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.persistence.autoconfigure.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-public class ServletInitializer extends SpringBootServletInitializer {
+@SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.skills.hub.repository")
+@EntityScan(basePackages = "com.skills.hub.model")
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(SkillSubscriptionLearningHub2026Application.class);
+public class SkillSubscriptionLearningHub2026Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SkillSubscriptionLearningHub2026Application.class, args);
+		System.out.println("Springboot has been successfully launched!");
 	}
 
 }
