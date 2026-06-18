@@ -29,7 +29,7 @@ public class UserController {
         // =========================
         // STEP 1: Return register page
 
-        return null; // TODO: "register"
+        return "register"; // TODO: "register"
     }
 
     @PostMapping("/register")
@@ -42,7 +42,10 @@ public class UserController {
         // STEP 2: if success → redirect to login
         // STEP 3: else → stay on register page
 
-        return null;
+        User registeredUser = userService.registerUser(user);
+		return (registeredUser != null)
+       			? "redirect:/login"
+       			: "register";
     }
 
     @GetMapping("/login")
@@ -50,7 +53,7 @@ public class UserController {
 
         // STEP 1: return login page
 
-        return null; // TODO: "login"
+        return "login"; // TODO: "login"
     }
 
     @PostMapping("/login")
@@ -64,7 +67,13 @@ public class UserController {
         // STEP 2: if user != null → redirect /packs
         // STEP 3: else → return login page again
 
-        return null;
+        User user = userService.login(email,password);
+
+		if(user != null){
+   			return "redirect:/packs";
+		}
+
+		return "login";
     }
 
 	public UserService getUserService() {
